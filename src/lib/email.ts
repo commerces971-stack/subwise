@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 export interface TransitionConfirmationParams {
   to: string;
@@ -23,7 +23,7 @@ export async function sendTransitionConfirmationEmail({
 }: TransitionConfirmationParams) {
   const dashboardUrl = `${process.env.NEXTAUTH_URL ?? "http://localhost:3000"}/dashboard`;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: process.env.EMAIL_FROM!,
     to,
     subject: `Votre lettre recommandée a été envoyée — ${subscriptionName}`,
@@ -108,7 +108,7 @@ export async function sendJ45Email({
 
   const dashboardUrl = `${process.env.NEXTAUTH_URL ?? "http://localhost:3000"}/dashboard`;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: process.env.EMAIL_FROM!,
     to,
     subject: `Rappel · ${subscriptionName} se renouvelle dans 45 jours`,
