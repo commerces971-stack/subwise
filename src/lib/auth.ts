@@ -6,7 +6,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -51,7 +51,7 @@ export const authOptions: NextAuthOptions = {
     EmailProvider({
       from: process.env.EMAIL_FROM!,
       sendVerificationRequest: async ({ identifier: email, url }) => {
-        await resend.emails.send({
+        await getResend().emails.send({
           from: process.env.EMAIL_FROM!,
           to: email,
           subject: "Connexion à Subwise",
