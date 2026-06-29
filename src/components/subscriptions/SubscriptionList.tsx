@@ -85,9 +85,9 @@ export default function SubscriptionList({ subscriptions }: Props) {
                     <div className="flex items-center gap-3 justify-end">
                       <button
                         onClick={() => setCompareTarget(sub)}
-                        className="text-sm text-emerald-600 hover:text-emerald-800 font-medium transition-colors"
+                        className="text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-lg transition-colors"
                       >
-                        Comparer
+                        Gérer la transition
                       </button>
                       <button
                         onClick={() => setEditTarget(sub)}

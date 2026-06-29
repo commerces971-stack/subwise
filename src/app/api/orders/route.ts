@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
     ],
     metadata: { orderId: order.id },
     customer_email: session.user.email ?? undefined,
-    success_url: `${baseUrl}/dashboard?order=${order.id}&paid=1`,
+    success_url: `${baseUrl}/transition/success?order=${order.id}`,
     cancel_url: `${baseUrl}/dashboard?order=${order.id}&cancelled=1`,
   });
 
